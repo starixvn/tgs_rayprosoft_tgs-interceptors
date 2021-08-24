@@ -1,13 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<Version>0.0.1</Version>
+		<Authors>Raypro</Authors>
+		<PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-interceptors</PackageProjectUrl>
+		<RepositoryUrl>https://gitlab.com/rayprosoft/tgs-interceptors.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Tgs Interception</PackageTags>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AspectCore.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Scrutor" Version="3.3.0" />
-    <PackageReference Include="TGS.ServiceUtility" Version="0.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AspectCore.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Scrutor" Version="3.3.0" />
+		<PackageReference Include="TGS.ServiceUtility" Version="0.0.3" />
+	</ItemGroup>
 
 </Project>
