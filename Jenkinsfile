@@ -14,7 +14,7 @@ pipeline {
         stage('Push packages') {
             steps {
                 sh 'dotnet pack -c $BuildConfiguration "Tgs.Interceptors/Tgs.Interceptors.csproj" --no-build'
-                sh 'dotnet nuget push "Tgs.Interceptors/bin/$BuildConfiguration/*.nupkg" --source "raypro" --skip-duplicate'
+                sh 'dotnet nuget push "Tgs.Interceptors/bin/$BuildConfiguration/*.nupkg" -s "raypro-baget" -k admin --skip-duplicate'
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Tgs.Interceptors;
-using TGS.ServiceUtility;
+using Tgs.ServiceUtility;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
