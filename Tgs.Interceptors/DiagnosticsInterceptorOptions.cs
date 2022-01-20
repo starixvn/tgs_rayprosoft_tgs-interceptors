@@ -1,10 +1,9 @@
 ﻿using System.Diagnostics;
 
-namespace Tgs.Interceptors
+namespace Tgs.Interceptors;
+
+public class DiagnosticsInterceptorOptions
 {
-	public class DiagnosticsInterceptorOptions
-	{
-		public ActivitySource InterceptorActivitySource { get; set; } =
-			new ActivitySource($"Tgs.Interceptors.DiagnosticsInterceptor");
-	}
+	public ActivitySource InterceptorActivitySource { get; set; } =
+		new ActivitySource($"Tgs.Interceptors.DiagnosticsInterceptor");
 }

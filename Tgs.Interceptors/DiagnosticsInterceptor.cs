@@ -4,35 +4,33 @@ using System.Threading.Tasks;
 using AspectCore.DependencyInjection;
 using AspectCore.DynamicProxy;
 
-namespace Tgs.Interceptors
+namespace Tgs.Interceptors;
+
+public class DiagnosticsInterceptor : AbstractInterceptor
 {
-	public class DiagnosticsInterceptor : AbstractInterceptor
+	[FromServiceContext]
+	public DiagnosticsInterceptorOptions Options { get; set; }
+
+	public override async Task Invoke(AspectContext context, AspectDelegate next)
 	{
-		[FromServiceContext]
-		public DiagnosticsInterceptorOptions Options { get; set; }
+		var typeName = context.ServiceMethod.DeclaringType.Name;
+		var methodName = context.ServiceMethod.Name;
+		var parameters = string.Join(
+			", ",
+			context.ServiceMethod.GetParameters().Select(p => p.Name));
 
-		public override async Task Invoke(AspectContext context, AspectDelegate next)
+		using var activity = Options.InterceptorActivitySource
+			.StartActivity($"{typeName}.{methodName}({parameters})");
+		
+		try
 		{
-			var typeName = context.ServiceMethod.DeclaringType.Name;
-			var methodName = context.ServiceMethod.Name;
-			var parameters = string.Join(
-				", ",
-				context.ServiceMethod.GetParameters().Select(p => p.Name));
+			await next(context);
+		}
+		catch (Exception)
+		{
+			_ = (activity?.AddTag("Error", true));
 
-			using (var activity = Options.InterceptorActivitySource
-				.StartActivity($"{typeName}.{methodName}({parameters})"))
-			{
-				try
-				{
-					await next(context);
-				}
-				catch (Exception)
-				{
-					activity?.AddTag("Error", true);
-
-					throw;
-				}
-			}
+			throw;
 		}
 	}
 }
