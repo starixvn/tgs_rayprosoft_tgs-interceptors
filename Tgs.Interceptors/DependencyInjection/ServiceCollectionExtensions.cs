@@ -14,8 +14,11 @@ public static class ServiceCollectionExtensions
 			.AddSingleton(options);
 
 	public static IServiceCollection AddServiceUtiltiyInterceptors(this IServiceCollection services)
-		=> services
-			.Decorate(typeof(IGetService<,>), typeof(GetServiceInterceptor<,>))
-			.Decorate(typeof(IQueryService<,>), typeof(QueryServiceInterceptor<,>))
-			.Decorate(typeof(ICommandService<>), typeof(CommandServiceInterceptor<>));
+	{
+		services.TryDecorate(typeof(IGetService<,>), typeof(GetServiceInterceptor<,>));
+		services.TryDecorate(typeof(IQueryService<,>), typeof(QueryServiceInterceptor<,>));
+		services.TryDecorate(typeof(ICommandService<>), typeof(CommandServiceInterceptor<>));
+
+		return services;
+	}
 }

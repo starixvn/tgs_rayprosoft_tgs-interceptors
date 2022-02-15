@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
-		<Version>0.2.0</Version>
+		<Version>0.2.1</Version>
 		<Authors>Raypro</Authors>
 		<PackageProjectUrl>https://gitlab.com/rayprosoft/tgs-interceptors</PackageProjectUrl>
 		<RepositoryUrl>https://gitlab.com/rayprosoft/tgs-interceptors.git</RepositoryUrl>
@@ -15,7 +15,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="AspectCore.Abstractions" Version="2.2.0" />
-		<PackageReference Include="Scrutor" Version="3.3.0" />
+		<PackageReference Include="Scrutor" Version="4.0.0" />
 		<PackageReference Include="TGS.ServiceUtility" Version="0.1.0" />
 	</ItemGroup>
 
